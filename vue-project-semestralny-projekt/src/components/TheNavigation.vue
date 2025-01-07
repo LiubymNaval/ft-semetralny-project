@@ -1,0 +1,37 @@
+<template>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <a>
+    <img src="/img/FC_Lomberx.png" height="100px" id = "logo">
+    </a>
+    <nav class="main-nav">
+      <ul class="main-menu" id="main-menu" ref="menu">
+        <li>
+          <RouterLink to="/">Domov</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/about">About</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/galeria">Galéria</RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/kontakt">Kontakt</RouterLink>
+        </li>
+      </ul>
+        <a class="hamburger" id="hamburger" ref="hamburger">
+        <i class="fa fa-bars" style="color:greenyellow"></i>
+        </a>
+    </nav>
+  </template>
+  
+  <script>
+    import { initializeHamburgerMenu } from '@/utils/app.js';
+  export default {
+    name: 'TheNavigation',
+    mounted() {
+    const hamburger = this.$refs.hamburger;
+    const menu = this.$refs.menu;
+    initializeHamburgerMenu(hamburger, menu);
+  },
+  };
+  </script>
