@@ -13,7 +13,7 @@
           <input type="text" placeholder="Vaše meno" v-model="formData.meno"><br>
           <input type="email" placeholder="Váš email" v-model="formData.email"><br>
           <textarea placeholder="Vaša správa" v-model="formData.sprava"></textarea><br>
-          <input type="checkbox" id="agree" v-model="formData.agree"><label for="agree"> Súhlasím so spracovaním osobných údajov.</label><br>
+          <input type="checkbox" id="agree" v-model="formData.agree"><label for="agree"> Súhlasím so spracovaním osobných údajov</label><br>
           <input type="submit" value="Odoslať" :disabled="!formData.agree">
         </form>
         <div id="error" class="text-red" v-if="error">

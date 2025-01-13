@@ -17,6 +17,9 @@
         <li>
           <RouterLink to="/kontakt">Kontakt</RouterLink>
         </li>
+        <li>
+          <RouterLink to="/profil" @click="handleProfileClick">{{ profileLinkText }}</RouterLink>
+        </li>
       </ul>
         <a class="hamburger" id="hamburger" ref="hamburger">
         <i class="fa fa-bars" style="color:greenyellow"></i>
@@ -25,9 +28,33 @@
   </template>
   
   <script>
-    import { initializeHamburgerMenu } from '@/utils/app.js';
+import { defineComponent, computed } from 'vue';
+import { useUserStore } from '@/stores/userStore';
+import { initializeHamburgerMenu } from '@/utils/app.js';
   export default {
     name: 'TheNavigation',
+    setup() {
+    const userStore = useUserStore();
+
+    const profileLinkText = computed(() => {
+      if (userStore.isLoggedIn) {
+        return `Prihlásený: ${userStore.user?.username} (${userStore.user?.role})`;
+      } else {
+        return 'Prihlásiť/Registrovať';
+      }
+    });
+
+    const handleProfileClick = () => {
+      if (userStore.isLoggedIn) {
+        userStore.logout(); 
+      }
+    };
+
+    return {
+      profileLinkText,
+      handleProfileClick,
+    };
+  },
     mounted() {
     const hamburger = this.$refs.hamburger;
     const menu = this.$refs.menu;

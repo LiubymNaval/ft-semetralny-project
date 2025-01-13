@@ -23,6 +23,7 @@
             <li><RouterLink to="/about" class="green-link">About</RouterLink></li>
             <li><RouterLink to="/galeria" class="green-link">Galéria</RouterLink></li>
             <li><RouterLink to="/kontakt" class="green-link">Kontakt</RouterLink></li>
+            <li><RouterLink to="/profil" class="green-link">Profil</RouterLink></li>
         </ul>
         </div>
         <div class="col-25">
