@@ -18,6 +18,9 @@
           <RouterLink to="/kontakt">Kontakt</RouterLink>
         </li>
         <li>
+          <RouterLink to="/recenzie">Recenzie</RouterLink>
+        </li>
+        <li>
           <RouterLink to="/profil" @click="handleProfileClick">{{ profileLinkText }}</RouterLink>
         </li>
       </ul>

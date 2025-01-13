@@ -1,4 +1,5 @@
 // Pridať obsluhu kliknutia na hviezdu
+export function setupStars() {
 const stars = document.querySelectorAll('.star');
 stars.forEach(star => {
   star.addEventListener('click', function() {
@@ -10,10 +11,10 @@ stars.forEach(star => {
     ratingValueSpan.textContent = ratingValue;
   });
 });
+}
 // Aktualizácia spätnej väzby pri výbere skóre
-const reviewForm = document.getElementById('review-form');
-reviewForm.addEventListener('submit', function(event) {
-  event.preventDefault(); // Zabrániť štandardnému správaniu formulára
+export function handleReviewSubmit(event) {
+  event.preventDefault();// Zabrániť štandardnému správaniu formulára
 
   // Získanie hodnôt z formulára
   const username = document.getElementById('username').value;
@@ -50,5 +51,4 @@ reviewsContainer.appendChild(newReview);
 document.getElementById('username').value = '';
 document.getElementById('comment').value = '';
 document.getElementById('rating').dataset.value = '1';
-
-});
+}
