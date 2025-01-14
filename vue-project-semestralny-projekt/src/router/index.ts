@@ -16,6 +16,11 @@ const router = createRouter({
       component: ProfilView,
     },
     {
+      path: '/qna',
+      name: 'qna',
+      component: () => import('../views/QnAView.vue'),
+    },
+    {
       path: '/galeria',
       name: 'galeria',
       component: () => import('../views/GalleryView.vue'),
