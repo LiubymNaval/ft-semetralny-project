@@ -20,7 +20,6 @@
         <h4>Rýchle odkazy</h4>
         <ul>
             <li><RouterLink to="/" class="green-link">Domov</RouterLink></li>
-            <li><RouterLink to="/about" class="green-link">About</RouterLink></li>
             <li><RouterLink to="/galeria" class="green-link">Galéria</RouterLink></li>
             <li><RouterLink to="/kontakt" class="green-link">Kontakt</RouterLink></li>
             <li><RouterLink to="/recenzie" class="green-link">Recenzie</RouterLink></li>

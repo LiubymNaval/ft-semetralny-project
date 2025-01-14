@@ -21,9 +21,6 @@ interface LoginPayload {
 
 export const useUserStore = defineStore("userStore", {
   state: () => ({
-    // user: null as User | null, 
-    // isLoggedIn: false, 
-
     user: JSON.parse(localStorage.getItem('user') || 'null') as User | null, 
     isLoggedIn: localStorage.getItem('isLoggedIn') === 'true', 
 

@@ -9,9 +9,6 @@
           <RouterLink to="/">Domov</RouterLink>
         </li>
         <li>
-          <RouterLink to="/about">About</RouterLink>
-        </li>
-        <li>
           <RouterLink to="/galeria">Galéria</RouterLink>
         </li>
         <li>
