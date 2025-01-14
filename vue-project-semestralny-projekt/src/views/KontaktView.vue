@@ -25,37 +25,40 @@
 </template>
 
 <script>
-import { useFormStore } from '@/stores/formStore';
+import { useFormStore } from '@/stores/formStore'; 
 
 export default {
-  setup() {
-    const formStore = useFormStore();
-
-    const submitForm = async () => {
+  name: 'KontaktView',
+  computed: {
+    formData() {
+      const formStore = useFormStore();
+      return formStore.formData;
+    },
+    error() {
+      const formStore = useFormStore();
+      return formStore.error;
+    },
+  },
+  methods: {
+    async submitForm() {
       try {
-        if (!formStore.formData.meno || !formStore.formData.email || !formStore.formData.sprava) {
-          formStore.error = 'Všetky polia sú povinné.';
+        const formStore = useFormStore();
+        if (!this.formData.meno || !this.formData.email || !this.formData.sprava) {
+          alert("Všetky polia sú povinné");
           return;
         }
         const response = await formStore.submitForm();
-        console.log("submitForm response:", response);  
-
         if (response.success) {
           alert("Správa bola úspešne odoslaná!");
+          location.reload();
         } else {
-           alert("Chyba pri odosielaní správy: " + response.message);
-          }
-        } catch (error) {
-              formStore.error = 'Chyba pri odosielaní správy!';
-              console.error('Error in submitForm:', error);
-          }   
-    };
-
-    return {
-      formData: formStore.formData,
-      error: formStore.error,
-      submitForm,
-    };
+          alert("Chyba pri odosielaní správy: " + response.message);
+        }
+      } catch (error) {
+        this.error = 'Chyba pri odosielaní správy!';
+        console.error('Error in submitForm:', error);
+      }
+    },
   },
 };
 </script>
