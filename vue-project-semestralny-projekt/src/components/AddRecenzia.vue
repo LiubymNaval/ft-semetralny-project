@@ -74,6 +74,7 @@
             this.comment = '';
             this.rating = 0;
             alert("Recenzia bola úspešne pridaná!");
+            this.$emit('refresh-comments');
           } else {
             alert(response.data.message || "Chyba pri pridávaní recenzie");
           }

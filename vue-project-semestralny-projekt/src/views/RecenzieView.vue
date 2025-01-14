@@ -5,12 +5,12 @@
 <div class="recenzie-view">
       <h1>Recenzie</h1>
       <h2>Tu nájdete recenzie o našom klube</h2>
-      <AddRecenzia />
+      <AddRecenzia v-if="!isAdmin" @refresh-comments="fetchComments"/>
       <div class="reviews-container">
       <div v-if="loading">Nahrávanie komentárov...</div>
       <div v-else-if="comments.length === 0">Žiadne recenzie</div>
       <div v-else>
-        <Recenzie v-for="comment in comments" :key="comment.id" :comment="comment" />
+        <Recenzia v-for="comment in comments" :key="comment.id" :comment="comment" @refresh-comments="fetchComments"/>
       </div>
     </div>
 </div>
@@ -20,24 +20,35 @@
 </template>
   
   <script>
-  import Recenzie from "../components/Recenzia.vue";
+  import Recenzia from "../components/Recenzia.vue";
   import AddRecenzia from "../components/AddRecenzia.vue";
+  import { useUserStore } from "@/stores/userStore";
   export default {
     name: "RecenzieView",
-    components: { Recenzie, AddRecenzia },
+    components: { Recenzia, AddRecenzia },
     data() {
       return {
         comments: [],
         loading: true,
       };
     },
+    computed: {
+      isAdmin() {
+        const userStore = useUserStore();
+        return userStore.user?.role === "admin";
+      },
+    },
     methods: {
       async fetchComments() {
         try {
           const response = await fetch("http://localhost/api/db/get_recenzie.php"); 
           const data = await response.json();
+          const userStore = useUserStore();
+          const userId = userStore.user?.id; 
           this.comments = data.sort((a, b) => {
-                return new Date(b.datum) - new Date(a.datum);
+            if (a.id_user === userId) return -1;
+            if (b.id_user === userId) return 1;
+            return new Date(b.datum) - new Date(a.datum);
             });
         } catch (error) {
           console.error("Chyba pri načítaní komentárov:", error);
