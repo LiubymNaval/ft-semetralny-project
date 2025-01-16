@@ -1,16 +1,7 @@
 <template>
   <div v-if="isLoggedIn" class="delete-recenzie">
-    <p>Ste si istí, že chcete recenziu vymazať?</p>
-    <div class="user-info">
-      <span class="username">{{ review.meno }}</span>
-      <span class="rating">
-        <span class="rating-stars">
-          {{ '★'.repeat(review.hodnotenie) + '☆'.repeat(5 - review.hodnotenie) }}
-        </span>
-      </span>
-    </div>
-    <p class="date">{{ review.datum }}</p>
     <p class="comment">{{ review.komentar }}</p>
+    <p>Ste si istí, že chcete recenziu vymazať?</p>
     <div class="actions">
       <button @click="deleteReview" class="delete-button">Vymazať</button>
       <button @click="$emit('cancel')" class="cancel-button">Zrušiť</button>
